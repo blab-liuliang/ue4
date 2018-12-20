@@ -1,13 +1,10 @@
-### Run Game
+### Run Game with server ip
 -game : Run with game mode  
 -log  : With log
-E:\svn\client\UnrealEngine\Engine\Binaries\Win64\UE4Editor.exe E:\github\ue4-examples\tutorials\PuzzlePlatforms\PuzzlePlatforms.uproject -game -log
+E:\svn\client\UnrealEngine\Engine\Binaries\Win64\UE4Editor.exe E:\github\ue4-examples\tutorials\PuzzlePlatforms\PuzzlePlatforms.uproject 127.0.0.1 -game -log
 
 ### Run Game With Map
-E:\svn\client\UnrealEngine\Engine\Binaries\Win64\UE4Editor.exe E:\github\ue4-examples\tutorials\PuzzlePlatforms\PuzzlePlatforms.uproject /Game/ThirdPersonCPP/Maps/ThirdPersonExampleMap -game -log
+E:\svn\client\UnrealEngine\Engine\Binaries\Win64\UE4Editor.exe E:\github\ue4-examples\tutorials\PuzzlePlatforms\PuzzlePlatforms.uproject /Game/ThirdPersonCPP/Maps/ThirdPersonExampleMap 127.0.0.1 -game -log
 
-### Run Game With Server ip
-E:\svn\client\UnrealEngine\Engine\Binaries\Win64\UE4Editor.exe E:\github\ue4-examples\tutorials\PuzzlePlatforms\PuzzlePlatforms.uproject 10.32.43.71:7778 -game -log
-
-### Run Server
-E:\svn\client\UnrealEngine\Engine\Binaries\Win64\UE4Editor.exe E:\github\ue4-examples\tutorials\PuzzlePlatforms\PuzzlePlatforms.uproject -server -log
+### Run Server With Listen map
+E:\svn\client\UnrealEngine\Engine\Binaries\Win64\UE4Editor.exe E:\github\ue4-examples\tutorials\PuzzlePlatforms\PuzzlePlatforms.uproject /Game/ThirdPersonCPP/Maps/ThirdPersonExampleMap?listen -server -log
