@@ -27,7 +27,10 @@ void AMoveingPlatform::Tick(float DeltaTime)
 	// only move on the server
 	if (HasAuthority())
 	{
+		FVector GlobalTargetLocation = GetTransform().TransformPosition(TargetLocation);
+		FVector direction = (GlobalTargetLocation - GetActorLocation()).GetSafeNormal();
+
 		// Move Actor to the x direction every frame
-		SetActorLocation(GetActorLocation() + FVector(Speed * DeltaTime, 0, 0));
+		SetActorLocation(GetActorLocation() + Speed * direction * DeltaTime);
 	}
 }
