@@ -17,6 +17,12 @@ void AMoveingPlatform::BeginPlay()
 	{
 		SetReplicates(true);
 		SetReplicateMovement(true);
+
+		GlobalStartLocation = GetActorLocation();
+		GlobalTargetLocation = GetTransform().TransformPosition(TargetLocation);
+		CurrentMoveDirection = 1.f;
+		ForwardDirectionNormalized = (GlobalTargetLocation - GlobalStartLocation).GetSafeNormal();
+		TotalLength = (GlobalTargetLocation - GlobalStartLocation).Size();
 	}
 }
 
@@ -27,10 +33,18 @@ void AMoveingPlatform::Tick(float DeltaTime)
 	// only move on the server
 	if (HasAuthority())
 	{
-		FVector GlobalTargetLocation = GetTransform().TransformPosition(TargetLocation);
-		FVector direction = (GlobalTargetLocation - GetActorLocation()).GetSafeNormal();
+		// switch move direction
+		float TraveledLength = FVector::DotProduct(GetActorLocation() - GlobalStartLocation, ForwardDirectionNormalized);
+		if (TraveledLength > TotalLength && CurrentMoveDirection>0.f)
+		{
+			CurrentMoveDirection = -1.f;
+		}
+		else if (TraveledLength < 0.f && CurrentMoveDirection<0.f)
+		{
+			CurrentMoveDirection = 1.f;
+		}
 
-		// Move Actor to the x direction every frame
-		SetActorLocation(GetActorLocation() + Speed * direction * DeltaTime);
+		// update location
+		SetActorLocation(GetActorLocation() + Speed * ForwardDirectionNormalized * DeltaTime * CurrentMoveDirection);
 	}
 }
