@@ -8,6 +8,18 @@ AMoveingPlatform::AMoveingPlatform()
 	SetMobility(EComponentMobility::Movable);
 }
 
+void AMoveingPlatform::BeginPlay()
+{
+	Super::BeginPlay();
+
+	// only server can be set as Replicates
+	if (HasAuthority())
+	{
+		SetReplicates(true);
+		SetReplicateMovement(true);
+	}
+}
+
 void AMoveingPlatform::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
