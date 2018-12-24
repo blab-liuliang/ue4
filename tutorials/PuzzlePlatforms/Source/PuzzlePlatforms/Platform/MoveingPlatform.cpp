@@ -31,7 +31,7 @@ void AMoveingPlatform::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	// only move on the server
-	if (HasAuthority())
+	if (ActiveTriggers > 0 && HasAuthority())
 	{
 		// switch move direction
 		float TraveledLength = FVector::DotProduct(GetActorLocation() - GlobalStartLocation, ForwardDirectionNormalized);
@@ -46,5 +46,18 @@ void AMoveingPlatform::Tick(float DeltaTime)
 
 		// update location
 		SetActorLocation(GetActorLocation() + Speed * ForwardDirectionNormalized * DeltaTime * CurrentMoveDirection);
+	}
+}
+
+void AMoveingPlatform::AddActiveTrigger()
+{
+	ActiveTriggers++;
+}
+
+void AMoveingPlatform::RemoveActiveTrigger()
+{
+	if (ActiveTriggers > 0)
+	{
+		ActiveTriggers--;
 	}
 }
