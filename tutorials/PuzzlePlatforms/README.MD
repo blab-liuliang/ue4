@@ -8,3 +8,6 @@ E:\svn\client\UnrealEngine\Engine\Binaries\Win64\UE4Editor.exe E:\github\ue4-exa
 
 ### Run Server With Listen map
 E:\svn\client\UnrealEngine\Engine\Binaries\Win64\UE4Editor.exe E:\github\ue4-examples\tutorials\PuzzlePlatforms\PuzzlePlatforms.uproject /Game/ThirdPersonCPP/Maps/ThirdPersonExampleMap?listen -server -log
+
+### Generated Project bat
+E:\svn\client\UnrealEngine\GenerateProjectFiles.bat -project="E:\github\ue4-examples\tutorials\PuzzlePlatforms\PuzzlePlatforms.uproject" -game -engine
